@@ -15,7 +15,7 @@ import {
   useDisclosure,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query, startAt } from "firebase/firestore";
 import { db } from "../firebase";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -96,7 +96,8 @@ const Dash_board = (props) => {
                 : "Click on a candidate to view more information."}
             </Heading>
             <VStack align={"left"} gap={3}>
-              {results.map((candit) => {
+              {results.map((candit, i) => {
+                const canNumber = i + 1;
                 return (
                   <Text
                     borderRadius={"lg"}
@@ -105,7 +106,6 @@ const Dash_board = (props) => {
                     boxShadow={"xl"}
                     fontWeight={800}
                     p={2}
-                    pl={5}
                     bg={"brand.100"}
                     color={"brand.300"}
                     key={candit.personalInfo.phoneNumber}
@@ -114,6 +114,16 @@ const Dash_board = (props) => {
                       router.push(`/${candit.personalInfo.phoneNumber}`);
                     }}
                   >
+                    <Button
+                      _hover={{
+                        bg: "",
+                      }}
+                      mr={3}
+                      color={"brand.300"}
+                      bg={"brand.200"}
+                    >
+                      {canNumber}
+                    </Button>{" "}
                     {candit.personalInfo.name}
                   </Text>
                 );
@@ -176,7 +186,10 @@ const Dash_board = (props) => {
 export const getServerSideProps = async () => {
   const candidatescollection = collection(db, "candidates");
   // Query all Id cards
-  const candidateQuery = query(candidatescollection);
+  const candidateQuery = query(
+    candidatescollection,
+    /* limit(10) */
+  );
 
   // get id cards
   const querySnapshot = await getDocs(candidateQuery);

@@ -6,6 +6,7 @@ import {
   Flex,
   HStack,
   Heading,
+  Image,
   Table,
   TableContainer,
   Tbody,
@@ -265,6 +266,20 @@ const ViewCandData = (props) => {
                 </Table>
               </TableContainer>
               <Generatepdf html={ref} candidate={canData.personalInfo.name} />
+
+              <Heading fontSize={'1.2rem'} fontFamily={'Andika'} mb={5}>Certificate</Heading>
+              {canData.qualification.certificate.includes(".pdf") === true ? (
+                <iframe className="iframe" src={canData.qualification.certificate} />
+              ) : (
+                <Image
+                  src={canData.qualification.certificate}
+                  width={300}
+                  height={300}
+                  alt="Looks like there's a problem with this image."
+                  mb={10}
+                />
+              )}
+            
             </Box>
           );
         })}

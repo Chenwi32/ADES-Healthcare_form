@@ -1,4 +1,10 @@
-import { Container, Flex, Heading, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  Heading,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -6,7 +12,6 @@ import { db } from "../firebase";
 import Head from "next/head";
 import Step from "../components/step";
 import Form from "../components/forms/form";
-
 
 const stepTitles = [
   "Personal info",
@@ -23,16 +28,20 @@ const Healthcare = () => {
   const [formData, setFormData] = useState({
     personalInfo: {
       name: "",
+      dateOfBirth: "",
+      sex: "",
       email: "",
       phoneNumber: "",
       country: "",
       province: "",
       city: "",
+      move: "",
     },
     qualification: {
       qualification: "",
       othersSpecific: "",
       certificate: "",
+      CV: "",
       subject: "",
       institution: "",
       date: "",
@@ -110,14 +119,6 @@ const Healthcare = () => {
       setFormData(data);
     }
   };
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      const data = JSON.parse(localStorage.getItem("healthFormData"));
-      console.log(data);
-      setFormData(data);
-    }
-  }, []);
 
   return (
     <>

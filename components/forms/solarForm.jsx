@@ -119,6 +119,7 @@ const SolarForm = ({
               qualification={qualification}
               setQualification={setQualification}
               component={"solartraining"}
+              handleLocalSave={handleLocalSave}
             />
           </ScaleFade>
         )}
@@ -129,7 +130,7 @@ const SolarForm = ({
           </ScaleFade>
         )}
 
-       {/*  <Button onClick={handleLocalSave}>Save and continue Later </Button> */}
+     
 
         <Flex justifyContent={"space-between"} mt={5}>
           <Button

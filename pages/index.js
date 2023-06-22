@@ -34,7 +34,7 @@ export default function Home() {
           flexDirection={isLargerThan700 ? "row" : "column"}
           justifyContent={"space-evenly"}
         >
-          <Link href={"healthcare"}>
+          <Link href={"/healthcare"}>
             <Flex
               boxShadow={"xl"}
               flexDirection={"column"}
@@ -67,7 +67,7 @@ export default function Home() {
                 w={isLargerThan700 ? "80%" : "100%"}
               >
                 <Text fontFamily={"Andika"}>
-                  fill and Submit your application for the ADES healthcare
+                  Fill and Submit your application for the ADES healthcare
                   services
                 </Text>
                 <Text ml={3} fontSize={"1.5rem"}>
